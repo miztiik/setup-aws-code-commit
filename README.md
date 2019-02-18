@@ -11,6 +11,8 @@ _**Note:** This is for Linux/Mac users._
 
 1. ### Create SSH Keys
     ```sh
+    # Create the `.ssh` directory if it isn't there already
+    # mkdir -p $HOME/.ssh
     cd $HOME/.ssh
     ssh-keygen
     # [here just create the name codecommit_rsa and leave all fields blank *just click enter*]
