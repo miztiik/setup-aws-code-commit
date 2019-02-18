@@ -8,6 +8,11 @@ You can use the AWS Management Console and upload, add, or edit a file to a repo
 ## Set Up SSH Connections to AWS CodeCommit Repositories
 
 _**Note:** This is for Linux/Mac users._
+0. ### Create IAM Users/Groups
+
+    It is better to have a seperate groups(say `Devs`) and add your users to that group.
+
+    Add Group Permission - Managed Policy - `AWSCodeCommitFullAccess`
 
 1. ### Create SSH Keys
     ```sh
@@ -19,7 +24,7 @@ _**Note:** This is for Linux/Mac users._
     cat codecommit_rsa.pub  
     ```
 1. ### Associate Your Public Key with Your IAM User
-    - Now we need to enter our `codecommit_rsa.pub` into AWS IAM. It is better if you have a seperate groups(say `Devs`) and add your users to that group.
+    - Now we need to enter our `codecommit_rsa.pub` into AWS IAM. 
     - Copy the SSH key ID (for example, `APKAEIBAERJR2EXAMPLE`)
 1. ### Add AWS CodeCommit to Your SSH Configuration
     ```sh
