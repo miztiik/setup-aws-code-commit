@@ -1,0 +1,67 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Demo Template
+
+Parameters: 
+  myKeyPair:
+    Type: "AWS::EC2::KeyPair::KeyName" 
+    Description: Select and existing KeyPair from your account.
+  
+  # myVPC:
+  #   Type: "AWS::EC2::VPC::Id" 
+  #   Description: Select an existing VPC from your account
+  
+  InstanceTypeParameter: 
+    Type: String
+    Default: t2.micro
+    AllowedValues: 
+      - t2.micro
+      - t2.small
+      - t2.medium
+    Description: Enter t2.micro, t2.small, or t2.medium. Default is t2.micro.
+
+Resources: 
+  myEC2:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0323c3dd2da7fb37d
+      InstanceType: 
+        Ref: InstanceTypeParameter
+      KeyName: 
+        Ref: myKeyPair
+      SecurityGroups:
+      - Ref: secGroupName
+
+  # myVPC:
+  #   Type: AWS::EC2::VPC
+  #   Properties:
+  #     CidrBlock: 10.11.0.0/16
+  #     EnableDnsSupport: 'false'
+  #     EnableDnsHostnames: 'false'
+
+  # mySubnet:
+  #   Type: AWS::EC2::Subnet
+  #   Properties:
+  #     VpcId:
+  #       Ref: myVPC
+  #     CidrBlock: 10.11.1.0/24
+  #     AvailabilityZone: "us-east-1a"
+
+
+  secGroupName:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: TestSG
+      GroupDescription: Allows SSH and HTTPS traffic
+      # VpcId:
+      #   Ref : myVPC
+      # SecurityGroupIngress:
+      # - IpProtocol: tcp
+      #   FromPort: 80
+      #   ToPort: 80
+      #   CidrIp: 0.0.0.0/0
+      # SecurityGroupEgress:
+      # - IpProtocol: tcp
+      #   FromPort: 80
+      #   ToPort: 80
+      #   CidrIp: 0.0.0.0/0
+
